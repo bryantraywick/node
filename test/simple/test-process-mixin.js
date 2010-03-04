@@ -44,3 +44,15 @@ process.mixin(true, target, {
 
 assert.notStrictEqual(['bar'], target.foo);
 assert.deepEqual(['bar'], target.foo);
+
+// Test that deep copies correctly perserve existing properties
+target = {
+    foo: {bar: "a", overwritten: "b"}
+};
+process.mixin(true, target, {
+    foo: {baz: "c", overwritten: "d"}
+});
+
+assert.equal("a", target.foo.bar);
+assert.equal("c", target.foo.baz);
+assert.equal("d", target.foo.overwritten);

@@ -142,7 +142,7 @@ process.mixin = function() {
           if (deep && d.value && typeof d.value === "object") {
             target[k] = process.mixin(deep,
               // Never move original objects, clone them
-              source[k] || (d.value.length != null ? [] : {})
+              target[k] || (d.value.length != null ? [] : {})
             , d.value);
           }
           else {
